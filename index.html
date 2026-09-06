@@ -453,7 +453,7 @@
             <div class="contact-section">
                 <p>Scaling a platform, building out a DevOps function, or need someone who takes infrastructure seriously for a project? I'm open to full-time roles, freelance, and consulting. Let's talk.</p>
                 <div class="contact-methods">
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thanatisravankumar6@gmail.com" class="contact-method">
+                    <a href="mailto:thanatisravankumar6@gmail.com" id="emailLink" rel="noopener" class="contact-method">
                         <h4>📧 Email</h4>
                         <p>thanatisravankumar6@gmail.com</p>
                     </a>
@@ -479,17 +479,21 @@
             <p>&copy; 2026 Sravan Kumar · DevOps Engineer · Hyderabad, India</p>
         </div>
     </footer>
+
     <script>
-    (function () {
-        var link = document.getElementById('emailLink');
-        if (!link) return;
-        var email = 'thanatisravankumar6@gmail.com';
-        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        if (!isMobile) {
-            link.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email);
-            link.setAttribute('target', '_blank');
-        }
-    })();
-</script>
+        // Email: desktop opens Gmail compose in the browser; mobile opens the phone's default mail app.
+        // Falls back to the mailto: href already on the link if anything goes wrong.
+        (function () {
+            var link = document.getElementById('emailLink');
+            if (!link) return;
+            var email = 'thanatisravankumar6@gmail.com';
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            if (!isMobile) {
+                link.setAttribute('href', 'https://mail.google.com/mail/?view=cm&fs=1&to=' + email);
+                link.setAttribute('target', '_blank');
+            }
+            // On mobile, the mailto: href stays as-is and opens the native mail app.
+        })();
+    </script>
 </body>
 </html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sravan Kumar | DevOps Engineer — Cloud, CI/CD & GitOps</title>
+    <meta name="description" content="Sravan Kumar — DevOps Engineer specializing in Azure, GCP, Kubernetes, Flux CD, and CI/CD automation for mission-critical tolling systems.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #0f766e;
+            --accent: #f59e0b;
+            --text-dark: #111827;
+            --text-light: #4b5563;
+            --text-muted: #6b7280;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.65;
+            background: var(--bg-light);
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .logo { font-size: 1.35rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+
+        nav ul { display: flex; list-style: none; gap: 1.75rem; }
+        nav a { text-decoration: none; color: var(--text-light); font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+        nav a:hover { color: var(--primary); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%);
+            color: white;
+            padding: 4.5rem 1rem;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.75rem; margin-bottom: 0.75rem; font-weight: 800; letter-spacing: -1px; }
+        .hero-photo {
+            width: 148px;
+            height: 148px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            margin: 0 auto 1.5rem;
+            display: block;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .hero .tagline { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 500; opacity: 0.97; }
+        .hero .subtitle { font-size: 1rem; margin-bottom: 2rem; opacity: 0.85; max-width: 640px; margin-left: auto; margin-right: auto; }
+
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .btn { padding: 0.75rem 1.6rem; border: none; border-radius: 0.5rem; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; }
+        .btn-primary { background: var(--accent); color: #1f2937; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(245, 158, 11, 0.35); }
+        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.7); }
+        .btn-secondary:hover { background: white; color: var(--primary-dark); border-color: white; }
+
+        .hero-meta { display: flex; justify-content: center; gap: 1.75rem; flex-wrap: wrap; font-size: 0.9rem; opacity: 0.9; }
+
+        section { padding: 3.5rem 1rem; }
+        section.alt { background: var(--bg-white); }
+
+        h2 { font-size: 1.85rem; margin-bottom: 2rem; color: var(--text-dark); text-align: center; position: relative; padding-bottom: 0.85rem; }
+        h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 56px; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 2px; }
+
+        /* About */
+        .about-content { max-width: 720px; margin: 0 auto; text-align: center; color: var(--text-light); font-size: 1.05rem; }
+        .about-content p { margin-bottom: 1rem; }
+
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .stat-card { text-align: center; padding: 1.25rem; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.35rem; }
+
+        /* Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .skill-category { background: var(--bg-light); padding: 1.75rem; border-radius: 0.6rem; border-top: 3px solid var(--primary); }
+        section.alt .skill-category { background: var(--bg-white); border: 1px solid var(--border); border-top: 3px solid var(--primary); }
+        .skill-category h3 { color: var(--text-dark); margin-bottom: 1rem; font-size: 1.05rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag { background: #eef2ff; color: var(--primary-dark); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
+
+        /* Experience */
+        .experience-item { padding: 1.75rem; background: var(--bg-white); border-radius: 0.6rem; border: 1px solid var(--border); border-left: 4px solid var(--primary); margin-bottom: 1.5rem; }
+        section.alt .experience-item { background: var(--bg-light); }
+        .experience-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.5rem; }
+        .experience-title { font-size: 1.15rem; font-weight: 700; color: var(--text-dark); }
+        .experience-date { color: var(--primary); font-size: 0.88rem; font-weight: 600; white-space: nowrap; }
+        .experience-company { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .experience-highlights { list-style: none; margin: 0; padding: 0; }
+        .experience-highlights li { margin-bottom: 0.6rem; padding-left: 1.4rem; position: relative; color: var(--text-light); font-size: 0.95rem; }
+        .experience-highlights li::before { content: '▸'; position: absolute; left: 0; color: var(--secondary); font-weight: bold; }
+
+        /* Projects */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .project-card { background: var(--bg-white); border-radius: 0.6rem; border: 1px solid var(--border); padding: 1.5rem; transition: all 0.2s; }
+        section.alt .project-card { background: var(--bg-light); }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08); border-color: var(--primary); }
+        .project-card h3 { color: var(--text-dark); font-size: 1.1rem; margin-bottom: 0.6rem; }
+        .project-desc { color: var(--text-light); margin-bottom: 1rem; font-size: 0.93rem; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .project-tag { background: #ecfdf5; color: var(--secondary); padding: 0.25rem 0.6rem; border-radius: 5px; font-size: 0.78rem; font-weight: 500; }
+
+        /* Education / Certs */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .info-card { background: var(--bg-white); border-radius: 0.6rem; border: 1px solid var(--border); padding: 1.75rem; }
+        section.alt .info-card { background: var(--bg-light); }
+        .info-card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem; }
+        .info-item { margin-bottom: 1.1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border); }
+        .info-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+        .info-item .title { font-weight: 600; color: var(--text-dark); }
+        .info-item .meta { color: var(--text-muted); font-size: 0.9rem; }
+
+        /* Contact */
+        .contact-section { text-align: center; max-width: 680px; margin: 0 auto; }
+        .contact-section > p { font-size: 1.05rem; color: var(--text-light); margin-bottom: 2rem; }
+        .contact-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.25rem; }
+        .contact-method { padding: 1.4rem; background: var(--bg-white); border-radius: 0.6rem; text-decoration: none; color: var(--text-dark); border: 1px solid var(--border); transition: all 0.2s; }
+        section.alt .contact-method { background: var(--bg-light); }
+        .contact-method:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.1); }
+        .contact-method h4 { color: var(--primary); margin-bottom: 0.35rem; font-size: 1rem; }
+        .contact-method p { color: var(--text-muted); font-size: 0.85rem; word-break: break-word; }
+
+        footer { background: var(--text-dark); color: #d1d5db; text-align: center; padding: 2rem 1rem; }
+        footer p { font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.1rem; }
+            nav ul { gap: 1rem; font-size: 0.88rem; }
+            .experience-header { flex-direction: column; }
+            .two-col { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            nav .container { flex-direction: column; gap: 0.75rem; }
+            nav ul { flex-wrap: wrap; justify-content: center; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">Sravan Kumar</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <div class="container">
+            <img src="data:image/jpeg;base64,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" alt="Sravan Kumar" class="hero-photo">
+            <h1>Sravan Kumar</h1>
+            <p class="tagline">DevOps Engineer — Azure · GCP · Kubernetes · Flux CD · CI/CD · GitOps</p>
+            <p class="subtitle">I help engineering teams ship faster, break less, and scale without chaos — automating cloud infrastructure and delivery for mission-critical systems.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="Sravan_DevOpsResume.pdf" class="btn btn-secondary" download>Download Resume</a>
+            </div>
+            <div class="hero-meta">
+                <span>📍 Hyderabad, India</span>
+                <span>💼 Available for roles, freelance &amp; consulting</span>
+                <span>🎓 MBA Candidate, VIT</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>DevOps Engineer with 2 years of experience automating cloud infrastructure and software delivery for mission-critical tolling systems serving multiple US state highway authorities. I specialize in Microsoft Azure and Google Cloud with GitOps-based delivery via Flux CD and ArgoCD, and I'm strong across Terraform, Docker, Kubernetes, and full-stack observability.</p>
+                <p>What makes me a little different: alongside my technical career I'm pursuing an MBA at VIT, so I approach DevOps with both an engineering mindset and a business lens — thinking in terms of deployment velocity, cloud cost efficiency, and system reliability, because those aren't just ops metrics, they're business outcomes.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">2 yrs</div>
+                    <div class="stat-label">DevOps experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">US state tolling clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">55</div>
+                    <div class="stat-label">Microservices per client</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Production availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="alt">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Cloud Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure (AKS, DevOps, Pipelines)</span>
+                        <span class="skill-tag">Google Cloud (GKE)</span>
+                        <span class="skill-tag">AWS (EC2, S3, VPC, IAM)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>CI/CD &amp; GitOps</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Azure DevOps</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Flux CD</span>
+                        <span class="skill-tag">Argo CD</span>
+                        <span class="skill-tag">SonarCloud</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Containers &amp; Orchestration</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes (AKS, GKE, EKS)</span>
+                        <span class="skill-tag">Helm</span>
+                        <span class="skill-tag">HAProxy</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>IaC &amp; Config Mgmt</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Ansible</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Monitoring &amp; Observability</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">Prometheus</span>
+                        <span class="skill-tag">Grafana</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Scripting &amp; OS</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">PowerShell</span>
+                        <span class="skill-tag">Linux (Ubuntu/CentOS)</span>
+                        <span class="skill-tag">Windows Server / IIS</span>
+                        <span class="skill-tag">Nginx</span>
+                        <span class="skill-tag">Tomcat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">DevOps Engineer</div>
+                        <div class="experience-company">ProcessQ Inc · Client: TransCore · Hyderabad, India</div>
+                    </div>
+                    <div class="experience-date">Jan 2025 – Present</div>
+                </div>
+                <ul class="experience-highlights">
+                    <li>Build and maintain CI/CD pipelines in Azure DevOps for automated builds and multi-environment deployments (Dev, QA, Staging, Training, Production) across Windows APIs/services and containerized microservices.</li>
+                    <li>Onboard and operate microservices on AKS and GKE using GitOps with Flux CD — managing deployments, services, config maps, namespaces, and safe rollbacks.</li>
+                    <li>Delivered DevOps across 5 US state highway tolling clients (NCTA, DelDOT, WVPA, COC, LSIORB), managing 55 microservices per client with 24/7 production availability.</li>
+                    <li>Migrated production GitOps from an unstable Rancher setup to Flux CD, resolving frequent connection failures and modernizing the delivery workflow.</li>
+                    <li>Drove .NET 6 → .NET 8 application upgrades and Kubernetes/ELK version upgrades across all environments with zero unplanned downtime.</li>
+                    <li>Administer Windows/IIS environments and Task Scheduler jobs in a hybrid architecture where IIS APIs and Kubernetes microservices communicate via HAProxy.</li>
+                    <li>Executed cloud-to-on-premises migrations for Dev, QA, Staging, and Training environments.</li>
+                    <li>Operate monitoring and logging with ELK, Prometheus, and Grafana; enforce code-quality gates via SonarCloud.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-title">Cloud &amp; DevOps Intern</div>
+                        <div class="experience-company">CloudifyOps · Bengaluru, India</div>
+                    </div>
+                    <div class="experience-date">Jun 2024 – Nov 2024</div>
+                </div>
+                <ul class="experience-highlights">
+                    <li>Provisioned scalable, secure AWS infrastructure (EC2, S3, VPC) using Terraform, enabling repeatable deployments.</li>
+                    <li>Built Jenkins pipelines for automated builds and implemented continuous delivery to Kubernetes clusters using Argo CD.</li>
+                    <li>Secured cloud resources with IAM policies and implemented cost-reduction measures while maintaining high availability.</li>
+                    <li>Monitored cloud services with AWS CloudWatch, proactively identifying performance issues and optimizing resource utilization.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Work -->
+    <section id="work" class="alt">
+        <div class="container">
+            <h2>Selected Work</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Rancher → Flux CD Migration</h3>
+                    <div class="project-desc">Migrated production GitOps from an outdated, failure-prone Rancher setup to Flux CD, eliminating recurring connection breakages and improving deployment reliability.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">Flux CD</span>
+                        <span class="project-tag">GitOps</span>
+                        <span class="project-tag">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Automated Production Deployments</h3>
+                    <div class="project-desc">Extended Azure DevOps CI/CD pipelines with deployment stages that publish the latest build image tag to the GitOps repo, triggering automated Flux CD sync and rollout — removing manual production steps.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">Azure DevOps</span>
+                        <span class="project-tag">CI/CD</span>
+                        <span class="project-tag">Automation</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Multi-Client Microservice Operations</h3>
+                    <div class="project-desc">Onboarded and managed 55 microservices per client across 5 US state tolling clients on AKS and GKE, sustaining continuous 24/7 production availability.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">AKS</span>
+                        <span class="project-tag">GKE</span>
+                        <span class="project-tag">Multi-tenant</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>.NET &amp; Platform Upgrades</h3>
+                    <div class="project-desc">Led .NET 6 → .NET 8 and Kubernetes/ELK version upgrades across QA, UAT, Staging, Training, and Production — keeping environments secure and compliant with zero unplanned downtime.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">.NET</span>
+                        <span class="project-tag">Kubernetes</span>
+                        <span class="project-tag">ELK</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Hybrid IIS + Kubernetes Architecture</h3>
+                    <div class="project-desc">Maintained a hybrid architecture where Windows IIS APIs and Kubernetes microservices communicate via HAProxy, keeping legacy and containerized workloads working together reliably.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">IIS</span>
+                        <span class="project-tag">HAProxy</span>
+                        <span class="project-tag">Hybrid Cloud</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Cloud-to-On-Prem Migration</h3>
+                    <div class="project-desc">Executed cloud-to-on-premises migrations for Dev, QA, Staging, and Training environments, and onboarded new Windows Scheduled Tasks to production.</div>
+                    <div class="project-tags">
+                        <span class="project-tag">Migration</span>
+                        <span class="project-tag">On-Premises</span>
+                        <span class="project-tag">Windows Server</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section id="education">
+        <div class="container">
+            <h2>Education &amp; Certifications</h2>
+            <div class="two-col">
+                <div class="info-card">
+                    <h3>Education</h3>
+                    <div class="info-item">
+                        <div class="title">Master of Business Administration (MBA)</div>
+                        <div class="meta">Vellore Institute of Technology · Jan 2025 – Dec 2026 (Expected)</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="title">B.Tech, Information Technology</div>
+                        <div class="meta">Panimalar Engineering College, Chennai · 2020 – 2024</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>Certifications</h3>
+                    <div class="info-item">
+                        <div class="title">Oracle Cloud Infrastructure 2023 Certified Foundations Associate</div>
+                        <div class="meta">Oracle · 2023</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="title">Cloud &amp; DevOps Internship Certificate</div>
+                        <div class="meta">CloudifyOps · 2024</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="title">Zoho Creator Training Completion Certificate</div>
+                        <div class="meta">Zoho</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="alt">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <div class="contact-section">
+                <p>Scaling a platform, building out a DevOps function, or need someone who takes infrastructure seriously for a project? I'm open to full-time roles, freelance, and consulting. Let's talk.</p>
+                <div class="contact-methods">
+                    <a href="mailto:thanatisravankumar6@gmail.com" class="contact-method">
+                        <h4>📧 Email</h4>
+                        <p>thanatisravankumar6@gmail.com</p>
+                    </a>
+                    <a href="tel:+916302522351" class="contact-method">
+                        <h4>📱 Phone</h4>
+                        <p>+91 63025 22351</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sravan-devops" target="_blank" rel="noopener" class="contact-method">
+                        <h4>💼 LinkedIn</h4>
+                        <p>in/sravan-devops</p>
+                    </a>
+                    <a href="https://github.com/Sravankumar152" target="_blank" rel="noopener" class="contact-method">
+                        <h4>💻 GitHub</h4>
+                        <p>Sravankumar152</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Sravan Kumar · DevOps Engineer · Hyderabad, India</p>
+        </div>
+    </footer>
+</body>
+</html>
